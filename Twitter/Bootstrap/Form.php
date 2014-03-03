@@ -64,7 +64,7 @@ abstract class Twitter_Bootstrap_Form extends Zend_Form
             {
                 $this->_addClassNames(array(
                     'form-control',
-                    'col-'.$this->_getColType().'-'.$this->_getFieldColSize()
+                    $this->_getElementColClassNames()
                 ), $element);
             }
         }
@@ -236,6 +236,38 @@ abstract class Twitter_Bootstrap_Form extends Zend_Form
     protected function _getColType()
     {
         return $this->_colType;
+    }
+
+    /**
+     * col-breakpoint-size classes for each of the form's element tags.
+     */
+    protected function _getElementColClassNames()
+    {
+        return 'col-' . $this->_getColType() . '-' . $this->_getFieldColSize();
+    }
+
+    /**
+     * col-breakpoint-size classes for the div tag that wraps the form element.
+     */
+    protected function _getFieldColClassNames()
+    {
+        return 'col-' . $this->_getColType() . '-' . $this->_getFieldColSize();
+    }
+
+    /**
+     * col-breakpoint-offset-size classes for the div tag that wraps the form element.
+     */
+    protected function _getFieldColOffsetClassNames()
+    {
+        return 'col-' . $this->_getColType() . '-offset-' . $this->_getLabelColSize();
+    }
+
+    /**
+     * col-breakpoint-size classes for the label tag.
+     */
+    protected function _getLabelColClassNames()
+    {
+        return 'col-' . $this->_getColType() . '-' . $this->_getLabelColSize();
     }
 
     public function setLabelColSize($size)
